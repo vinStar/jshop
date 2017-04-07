@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="OUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%c] [%d{dd MMM yyyy - hh:mm:ss}] %5p - %m %n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件输出日志(DEBUG) -->
+	<appender name="debug-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>logs/jeeshop-debug.log</File>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>logs/history/jeeshop-debug-%d{yyyy-MM-dd}.log</fileNamePattern>
+	      <maxHistory>60</maxHistory>
+	    </rollingPolicy>
+		<encoder charset="UTF-8">
+			<Pattern>[%d{HH:mm:ss}] [%thread] |%level| %marker %logger{50} -> %X{rpid} %msg %n%ex</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 文件输出日志(ERROR) -->
+	<appender name="error-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>logs/jeeshop-error.log</File>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+	      <level>error</level>
+	      <onMatch>ACCEPT</onMatch>
+	      <onMismatch>DENY</onMismatch>
+	    </filter>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <fileNamePattern>logs/history/jeeshop-error-%d{yyyy-MM}.log</fileNamePattern>
+	      <maxHistory>12</maxHistory>
+	    </rollingPolicy>
+		<encoder charset="UTF-8">
+			<Pattern>[%d{dd|HH:mm:ss}] [%thread] |%level| %marker %logger{50} -> %X{rpid} %msg %n%ex</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 异步输出 -->
+	<appender name="async-debug-file" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>1000</queueSize>
+		<appender-ref ref="debug-file" />
+	</appender>
+	<appender name="async-error-file" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>1000</queueSize>
+		<appender-ref ref="error-file" />
+	</appender>
+
+	<root level="debug">
+		<appender-ref ref="OUT" />
+	</root>
+
+	<root level="debug">
+		<appender-ref ref="async-debug-file" />
+		<appender-ref ref="async-error-file"/>
+	</root>
+
+    <logger name="net.jeeshop.*" level="DEBUG" additivity="false">
+		<appender-ref ref="async-debug-file" />
+	</logger>
+	<logger name="org.mybatis">
+		<level value="TRACE"/>
+	</logger>
+	<!--<logger name="com.ibatis" level="debug" />-->
+	<logger name="java.sql.Connection" level="DEBUG" />
+	<logger name="java.sql.Statement" level="DEBUG" />
+	<logger name="java.sql.PreparedStatement" level="DEBUG" />
+	<logger name="dao" level="DEBUG"/>
+	<logger name="java.sql" level="DEBUG">
+		<appender-ref ref="OUT"/>
+	</logger>
+
+	<logger name="me.jclagache.data.mybatis" level="DEBUG"/>
+
+	<logger name="org.apache.ibatis" level="DEBUG"/>
+	<logger name="org.mybatis.spring" level="DEBUG"/>
+
+</configuration>
