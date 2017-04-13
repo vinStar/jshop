@@ -34,14 +34,15 @@
 * 2015.6.9 后台管理，全局对表单中的输入框增加bootstrap3风格的样式
 * 2015.6.27 前台登录，不再提供QQ/微博/支付宝的快捷登录支持
 * 2015.6.27 bugfix:前台用户注册/邮件发送等
-* 2017.4.13 1.改为无项目名访问
-            2.http://127.0.0.1:8080/                      test1/123456
-            3.http://127.0.0.1:8080/manage/user/login     admin/123456
-            4.配置相关路径在表t_systemsetting
-            5.图片改为站点内文件attached
-            6. 1. log change from "slf4j+logback" to "slf4j+log4j"
-               2. database connection pool change to Druid
-               3. others : image upload , Chinese garbage ...
+* 2017.4.13<br/>
+            1.改为无项目名访问<br/>
+            2.http://127.0.0.1:8080/                      test1/123456<br/>
+            3.http://127.0.0.1:8080/manage/user/login     admin/123456<br/>
+            4.配置相关路径在表t_systemsetting<br/>
+            5.图片改为站点内文件attached<br/>
+            6. 1. log change from "slf4j+logback" to "slf4j+log4j"<br/>
+               2. database connection pool change to Druid<br/>
+               3. others : image upload , Chinese garbage ...<br/>
 
 ## todo list
 * BS00001:后台登录，提交前的数据校验
