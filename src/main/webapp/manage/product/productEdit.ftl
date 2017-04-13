@@ -532,8 +532,8 @@ KindEditor.ready(function(K) {
 				   alert("上传失败：\n失败原因:" + data.msg);
 			   } else {
 					var $tr = $("#firstTr").clone();
-				   $tr.find("img[name=img]").attr("src", "${systemSetting().imageRootPath}" + data.filePath);
-				   $tr.find(":input[name=images]").val(data.filePath);
+				   $tr.find("img[name=img]").attr("src", "${systemSetting().imageRootPath}"+"attached/" + data.filePath);
+				   $tr.find(":input[name=images]").val("attached/" + data.filePath);
 				   $("#firstTr").parent().append($tr);
 				   $tr.show();
 			   }

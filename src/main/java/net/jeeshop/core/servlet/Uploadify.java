@@ -31,8 +31,8 @@ public class Uploadify extends HttpServlet{
     /** 
      * 实现多文件的同时上传 
      */   
-    public void doGet(HttpServletRequest request,  
-            HttpServletResponse response) throws ServletException, IOException {  
+    public void doGet(HttpServletRequest request,
+					  HttpServletResponse response) throws ServletException, IOException {
          System.out.println("===========");
         //设置接收的编码格式  
         request.setCharacterEncoding("UTF-8");  

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Deprecated
 public class DevServlet extends HttpServlet {
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -33,6 +34,7 @@ public class DevServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest arg0, HttpServletResponse arg1)
 			throws ServletException, IOException {
+		System.out.println("HttpServlet.service"+arg0.toString());
 		arg0.setCharacterEncoding("utf-8");
 		arg1.setCharacterEncoding("utf-8");
 		String devPath = DevServlet.class.getResource("/").getFile()

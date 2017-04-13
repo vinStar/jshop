@@ -1,7 +1,6 @@
 package net.jeeshop.core.dao;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import net.jeeshop.core.dao.page.PagerModel;
 import net.jeeshop.core.exception.PrivilegeException;

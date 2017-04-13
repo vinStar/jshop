@@ -76,12 +76,8 @@ JShop是在Jeeshop的基础上进行技术框架变更，以及业务功能完�
 						<li class="jeeshop_item "><span>支持通过邮箱找回密码功能。</span></li>
 						<li class="jeeshop_item "><span>支持像京东、淘宝那样的左侧吸附功能的商品类目展示方式。</span></li>
 						<li class="jeeshop_item "><span>支持商品收藏、商品到货邮件提醒。</span></li>
-						
 						<li class="jeeshop_item "><span>支持商品促销活动功能，促销活动主要包括 降价促销、打折促销、买就增双倍积分。</span></li>
 						<li class="jeeshop_item "><span>支持积分商城功能，用户可以通过积分兑换到想要购买的商品了。</span></li>
 						<li class="jeeshop_item "><span>支持商品规格功能，例如服装，手机等商品都有对商品规格的要求。</span></li>
-						<li class="jeeshop_item "><span>...</span></li>
-						
-
 					</ul>
 				</div>

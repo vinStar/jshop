@@ -84,41 +84,42 @@
         </plugins>
     </build>
     <properties>
-        <!--<spring.version>3.0.5.RELEASE</spring.version>-->
-        <spring.version>4.2.3.RELEASE</spring.version>
-        <!--<struts.version>2.3.16.3</struts.version>-->
-        <javassist.version>3.11.0.GA</javassist.version>
+        <!-- main version setting -->
 
+        <spring.version>4.2.3.RELEASE</spring.version>
+        <javassist.version>3.11.0.GA</javassist.version>
+        <druid.version>1.0.11</druid.version>
         <aspectj.version>1.5.3</aspectj.version>
         <aopalliance.version>1.0</aopalliance.version>
         <asm.version>3.2</asm.version>
         <cglib.version>2.2.2</cglib.version>
         <jackson.version>1.9.13</jackson.version>
         <freemarker.version>2.3.16</freemarker.version>
-        <!--<ognl.version>3.0.6</ognl.version>-->
         <mybatis.version>3.0.6</mybatis.version>
         <mybatis-spring.version>1.0.0-RC3</mybatis-spring.version>
         <spring-data-redis.version>1.4.2.RELEASE</spring-data-redis.version>
         <jedis.version>2.6.0</jedis.version>
-        <mysql-jdbc.version>5.0.8</mysql-jdbc.version>
-        <slf4j.version>1.6.1</slf4j.version>
-        <logback.version>1.1.2</logback.version>
+        <mysql-jdbc.version>5.1.30</mysql-jdbc.version>
+
+
         <json-lib.version>2.4</json-lib.version>
         <fastjson.version>1.1.33</fastjson.version>
         <jdom.version>1.1</jdom.version>
 
         <ezmorph.version>1.0.6</ezmorph.version>
-        <p6spy.version>1.3</p6spy.version>
+
         <dom4j.version>1.6.1</dom4j.version>
         <urlrewrite.version>4.0.4</urlrewrite.version>
         <javamail.version>1.4</javamail.version>
         <pinyin4j.version>2.5.0</pinyin4j.version>
         <lucene.version>3.3.0</lucene.version>
 
-        <c3p0.version>0.9.5</c3p0.version>
-        <aliyun-openservices.version>1.0.12</aliyun-openservices.version>
-        <druid.version>0.2.3</druid.version>
 
+        <aliyun-openservices.version>1.0.12</aliyun-openservices.version>
+
+
+        <!-- tools version setting -->
+        <slf4j.version>1.7.7</slf4j.version>
         <commons-lang.version>2.5</commons-lang.version>
         <commons-io.version>2.2</commons-io.version>
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
@@ -133,8 +134,7 @@
         <commons-httpclient.version>3.0.1</commons-httpclient.version>
 
         <htmlparser.version>2.1</htmlparser.version>
-        <!--<httpclient.version>4.1.3</httpclient.version>-->
-        <!--<httpcore.version>4.1.4</httpcore.version>-->
+
         <httpclient.version>4.2</httpclient.version>
         <jaxen.version>1.1.1</jaxen.version>
 
@@ -162,11 +162,23 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -249,11 +261,7 @@
             <artifactId>cglib</artifactId>
             <version>${cglib.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>-->
+
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
@@ -275,32 +283,8 @@
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.apache.struts</groupId>-->
-        <!--<artifactId>struts2-core</artifactId>-->
-        <!--<version>${struts.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.struts</groupId>-->
-        <!--<artifactId>struts2-spring-plugin</artifactId>-->
-        <!--<version>${struts.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.struts.xwork</groupId>-->
-        <!--<artifactId>xwork-core</artifactId>-->
-        <!--<version>${struts.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>ognl</groupId>-->
-        <!--<artifactId>ognl</artifactId>-->
-        <!--<version>${ognl.version}</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>${c3p0.version}</version>
-            <scope>compile</scope>
-        </dependency>
+
+
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -311,11 +295,21 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
         </dependency>
+        <!-- jdbc driver -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-jdbc.version}</version>
+            <scope>runtime</scope>
         </dependency>
+        <!-- connection pool -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- LOGGING begin -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -323,24 +317,23 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- common-logging 实际调用slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <!-- java.util.logging 实际调用slf4j -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-log4j12</artifactId>-->
-        <!--<version>${slf4j.version}</version>-->
-        <!--</dependency>-->
+        <!-- LOGGING end -->
+
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
@@ -357,21 +350,13 @@
             <artifactId>qiniu-java-sdk</artifactId>
             <version>[7.0.0, 7.0.99]</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>com.aliyun.openservices</groupId>-->
-        <!--<artifactId>aliyun-openservices</artifactId>-->
-        <!--<version>${aliyun-openservices.version}</version>-->
-        <!--</dependency>-->
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>net.sf.ezmorph</groupId>
             <artifactId>ezmorph</artifactId>
@@ -382,11 +367,7 @@
             <artifactId>jdom</artifactId>
             <version>${jdom.version}</version>
         </dependency>
-        <dependency>
-            <groupId>p6spy</groupId>
-            <artifactId>p6spy</artifactId>
-            <version>${p6spy.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
@@ -429,6 +410,12 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>${commons-beanutils.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>

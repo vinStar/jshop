@@ -67,7 +67,8 @@ public class KindController {
         }
 //创建文件夹
         savePath += dirName + "/";
-        saveUrl += dirName + "/";
+        saveUrl += "attached/"+dirName + "/";
+
         File saveDirFile = new File(savePath);
         if (!saveDirFile.exists()) {
             saveDirFile.mkdirs();
@@ -132,6 +133,8 @@ public class KindController {
         SystemSetting systemSetting = SystemManager.getInstance().getSystemSetting();
         String rootPath =  SystemManager.getInstance().getProperty("file.upload.path");
         String rootUrl = systemSetting.getImageRootPath();
+        logger.debug("rootPath=" + rootPath);
+        logger.debug("rootPath=" + rootUrl);
         //图片扩展名
         String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
 
@@ -139,7 +142,7 @@ public class KindController {
             if (!Arrays.<String>asList(new String[]{"image", "flash", "media", "file"}).contains(dirName)) {
                 return ("Invalid Directory name.");
             }
-            rootPath += dirName + "/";
+            rootPath += dirName + "//";
             rootUrl += "attached/"+dirName + "/";
             File saveDirFile = new File(rootPath);
             if (!saveDirFile.exists()) {
@@ -179,6 +182,8 @@ public class KindController {
         Map<String, String> addFileMap = new HashMap<String, String>();
         logger.debug("currentPathFile.listFiles=" + currentPathFile);
         logger.debug("currentPathFile.listFiles=" + currentPathFile.listFiles());
+        logger.debug("currentPathFile.listFiles.length=" + currentPathFile.listFiles().length);
+
         if (currentPathFile.listFiles() != null) {
             for (File file : currentPathFile.listFiles()) {
                 Hashtable<String, Object> hash = new Hashtable<String, Object>();

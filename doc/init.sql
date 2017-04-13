@@ -1,3 +1,4 @@
+-- init the system
 delete from jeeshop1_0.t_order;
 delete from jeeshop1_0.t_product;
 delete from jeeshop1_0.t_catalog;
